@@ -89,29 +89,25 @@ function renderSoal(player) {
 // 5. Logika Cek Jawaban
 function cekJawaban(player, dipilih, benar, btn) {
     if (dipilih == benar) {
-        // Efek Visual Menarik Tali
+        // Tarik Tali
         posisiTali += (player === 'p1' ? -45 : 45);
         document.getElementById('tali').style.transform = `translateX(${posisiTali}px)`;
         
-        // Hapus soal yang sudah dijawab benar, lalu ganti baru
+        // EFEK TAMBAHAN: Harta karun sedikit membesar saat ditarik
+        const harta = document.querySelector('#harta-karun img');
+        harta.style.transform = "scale(1.2)";
+        setTimeout(() => { harta.style.transform = "scale(1)"; }, 200);
+
+        // Ganti Soal
         if (player === 'p1') p1Bank.shift(); else p2Bank.shift();
         renderSoal(player);
         cekPemenang();
     } else {
-        // SALAH JAWAB: Nyawa berkurang & ganti soal otomatis
-        if (player === 'p1') { 
-            p1HP--; 
-            p1Bank.shift(); 
-        } else { 
-            p2HP--; 
-            p2Bank.shift(); 
-        }
-        
-        // Efek Getar jika salah
+        // SALAH JAWAB
+        if (player === 'p1') { p1HP--; p1Bank.shift(); } else { p2HP--; p2Bank.shift(); }
         const card = document.getElementById(player === 'p1' ? 'card-p1' : 'card-p2');
         card.classList.add('shake');
         setTimeout(() => card.classList.remove('shake'), 500);
-        
         updateHP();
         renderSoal(player);
         cekPemenang();
@@ -172,4 +168,5 @@ function keluarKeBeranda() {
         p1HP = 5; 
         p2HP = 5;
     }, 600);
+
 }

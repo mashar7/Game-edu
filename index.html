@@ -49,7 +49,12 @@
     #arena { height: 40vh; background: linear-gradient(to bottom, #A1C4FD 0%, #C2E9FB 100%); position: relative; overflow: hidden; }
     #grass { position: absolute; bottom: 0; width: 100%; height: 25%; background: linear-gradient(to top, #a8e063, #56ab2f); }
     #tali { position: absolute; width: 400%; height: 12px; background: #795548; top: 65%; left: -150%; transition: 0.5s; border-radius: 10px; }
-    #harta-karun { position: absolute; font-size: 60px; left: 50%; top: -45px; transform: translateX(-50%); }
+    #harta-karun { 
+    position: absolute; 
+    left: 50%; 
+    top: -55px; /* Sesuaikan tinggi agar gambar tidak melayang terlalu tinggi dari tali */
+    transform: translateX(-50%); 
+}
     .lion { font-size: 80px; position: absolute; top: 32%; transition: 0.3s; }
     #lion1 { left: 20%; } #lion2 { right: 20%; transform: scaleX(-1); }
 
@@ -107,7 +112,9 @@
   <div id="game-container">
     <div id="arena">
       <div id="grass"></div>
-      <div id="tali"><div id="harta-karun">📦</div></div>
+      <div id="tali"><div id="harta-karun">
+        <img src="assets/images/Harta.png" alt="Harta Karun" style="width: 80px; height: auto;">
+      </div></div>
       <div class="lion" id="lion1">🦁</div>
       <div class="lion" id="lion2">🦁</div>
     </div>
@@ -145,4 +152,5 @@
   <script src="data.js"></script>
   <script src="script.js"></script>
 </body>
+
 </html>
